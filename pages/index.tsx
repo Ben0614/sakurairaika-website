@@ -11,6 +11,13 @@ import Container from "../components/Container";
 import FixedJoin from "../components/FixedJoin";
 import ViewAll from "../components/ViewAll";
 import {
+  newsData,
+  profileData,
+  ScheduleCalendarDate,
+  ScheduleCalendarData,
+  FanCludOptions,
+} from "../data";
+import {
   LoadingBg,
   News,
   NewsTitle,
@@ -44,69 +51,8 @@ import {
   ScheduleFlex,
 } from "../styles/HomePageStyle";
 
-const newsData = [
-  {
-    date: "2022.01.23",
-    category: "FANCLUB",
-    title: "MOVIE更新!!｜2022 Calendar Shooting Making Movie",
-    content: "MOVIEを更新しました!!動画はこちら是非ご覧ください！",
-  },
-  {
-    date: "2022.01.22",
-    category: "FANCLUB",
-    title: "STAFF BLOG更新!!｜FLOWER DRUM SONG",
-    content:
-      "STAFF BLOGを更新しました!! タイトル：FLOWER DRUM SONG スタッフブ…",
-  },
-  {
-    date: "2022.01.20",
-    category: "FANCLUB",
-    title: "STAFF BLOG更新!!｜カレンダー販売開始いたしました！",
-    content:
-      "STAFF BLOGを更新しました!! タイトル：カレンダー販売開始いたしました！スタッフブ…",
-  },
-  {
-    date: "2022.01.20",
-    category: "FANCLUB",
-    title: "2022年度カレンダー本日より販売開始！",
-    content:
-      "2022年度カレンダーの予約受付を開始いたしました！桜井玲香からのメッセージはコチラ※予約受注商品の…",
-  },
-];
-const profileData = [
-  { title: "生年月日", content: "1994年5月16日" },
-  { title: "出身地", content: "神奈川県" },
-  { title: "血液型", content: "A型" },
-  { title: "身長", content: "156cm" },
-];
-const ScheduleCalendarDate = [
-  { date: "27", week: "THU", year_month: "2022.1 -" },
-  { date: "28", week: "FRI", year_month: "2022.1 -" },
-  { date: "03", week: "THU", year_month: "2022.2 -" },
-  { date: "04", week: "FRI", year_month: "2022.2 -" },
-  { date: "05", week: "SAT", year_month: "2022.2 -" },
-  { date: "06", week: "SUN", year_month: "2022.2 -" },
-];
-const ScheduleCalendarData = [
-  { category: "WEB", content: "「WEBザテレビジョン」" },
-  { category: "STAGE", content: "KERA CROSS 第四弾『SLAPSTICKS』" },
-  { category: "STAGE", content: "KERA CROSS 第四弾『SLAPSTICKS』" },
-  { category: "STAGE", content: "KERA CROSS 第四弾『SLAPSTICKS』" },
-  { category: "STAGE", content: "KERA CROSS 第四弾『SLAPSTICKS』" },
-  { category: "STAGE", content: "KERA CROSS 第四弾『SLAPSTICKS』" },
-];
-const FanCludOptions = [
-  "ABOUT",
-  "STAFF BLOG",
-  "GALLERY",
-  "MOVIE",
-  "うににゃん BLOG",
-  "MESSAGE",
-  "GOODS",
-  "TICKET",
-];
-
 const Home: NextPage = () => {
+  // 獲取各個區域 判斷顯示
   const NewsRef = useRef<HTMLDivElement>(null);
   const [showNews, setShowNews] = useState(false);
   const ProfileRef = useRef<HTMLDivElement>(null);
@@ -118,14 +64,20 @@ const Home: NextPage = () => {
   const SnsRef = useRef<HTMLDivElement>(null);
   const [showSns, setShowSns] = useState(false);
 
+  // 載入中
   const [loading, setLoading] = useState(true);
+  // 滾動高度
   const [scrollTopHeight, setScrollTopHeight] = useState(0);
+  // 螢幕高度
   const [screenHeight, setScreenHeight] = useState(0);
+  // 日期的index
   const [circleNumber, setCircleNumber] = useState(0);
 
   // console.log(circleNumber);
   // console.log(showSiteLinks);
 
+  // 控制各區域顯示的函式
+  // 滾動高度 + (螢幕高度 / 2) > 該區域距離頂部的高度 即顯示
   const handleAreaShow = useCallback(() => {
     if (scrollTopHeight + screenHeight / 2 > NewsRef.current!.offsetTop) {
       setShowNews(true);
@@ -144,6 +96,7 @@ const Home: NextPage = () => {
     }
   }, [scrollTopHeight, screenHeight]);
 
+  // 設置滾動高度和螢幕高度 並調用各區域顯示函式
   const handleScrollTop = useCallback(() => {
     setScrollTopHeight(document.documentElement.scrollTop);
     setScreenHeight(document.documentElement.clientHeight);
@@ -152,24 +105,32 @@ const Home: NextPage = () => {
     handleAreaShow();
   }, [handleAreaShow]);
 
+  // 掛載後0.3秒移除載入中
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 300);
   }, []);
 
+  // 一掛載就調用
   useEffect(() => {
     handleScrollTop();
+    // 滾動事件
     window.addEventListener("scroll", handleScrollTop);
   }, [handleScrollTop]);
   return (
     <>
+      {/* 設置網站名稱 */}
       <Head>
         <title>桜井玲香 OFFICIAL SITE & FANCLUB</title>
       </Head>
+      {/* 載入中Bg */}
       <LoadingBg loading={loading} />
+      {/* Header */}
       <Header />
+      {/* 右下角的Fixed圓形 */}
       <FixedJoin />
+      {/* News區域 */}
       <News ref={NewsRef} showNews={showNews}>
         <Container>
           <NewsFlex>
@@ -199,6 +160,7 @@ const Home: NextPage = () => {
         </Container>
         <ViewAll mobile />
       </News>
+      {/* Profile區域 */}
       <Profile ref={ProfileRef} showProfile={showProfile}>
         <Container>
           <ProfileFlex>
@@ -234,6 +196,7 @@ const Home: NextPage = () => {
         </Container>
         <ViewAll mobile />
       </Profile>
+      {/* Schedule區域 */}
       <Schedule ref={ScheduleRef} showSchedule={showSchedule}>
         <Container>
           <ScheduleFlex>
@@ -288,6 +251,7 @@ const Home: NextPage = () => {
         </Container>
         <ViewAll mobile />
       </Schedule>
+      {/* FanClud區域 */}
       <FanClud ref={FanCludRef} showFanClud={showFanClud}>
         <Container>
           <FanCludTitle>
@@ -318,6 +282,7 @@ const Home: NextPage = () => {
                   <Link href="javascript:void(0)" key={i}>
                     <a>
                       <li>
+                        {/* 前面的橫線 */}
                         <div></div>
                         <p>{v}</p>
                       </li>
@@ -329,6 +294,7 @@ const Home: NextPage = () => {
           </FanCludContent>
         </Container>
       </FanClud>
+      {/* Sns區域 */}
       <Sns ref={SnsRef} showSns={showSns}>
         <Container>
           <SnsTitle>
@@ -348,6 +314,7 @@ const Home: NextPage = () => {
           </SnsLinks>
         </Container>
       </Sns>
+      {/* Footer */}
       <Footer />
     </>
   );

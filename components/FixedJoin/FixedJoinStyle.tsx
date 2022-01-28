@@ -8,8 +8,10 @@ export const FixedJoinWrap = styled.div`
   height: 130px;
   border-radius: 50%;
   background: url(/images/join.png) #dc7692 no-repeat;
+  /* 讓圖片完整顯示 */
   background-size: contain;
   border: 1px solid #dc7692;
+  /* clip + padding 做出縫隙 */
   background-clip: content-box;
   padding: 2px;
   z-index: 50;

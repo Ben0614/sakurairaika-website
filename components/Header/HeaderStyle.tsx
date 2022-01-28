@@ -6,10 +6,13 @@ interface Props {
 }
 
 const HeaderWrap = styled.div<Props>`
+  /* 用Image或者這個Bg都可以 */
   /* background: url("/images/mobile/mainimg_sp.jpg") no-repeat;
   background-size: cover;
   width: 100%;
   height: 935px; */
+
+  /* 根據showHeader判斷顯示Header */
   opacity: ${(props) => (props.showHeader ? 1 : 0)};
   transition: 1s;
 `;
@@ -20,6 +23,7 @@ const FixedList = styled.div<Props>`
   top: 0;
   left: 0;
   background-color: rgba(255, 255, 255, 0.9);
+  /* 根據showMenuList判斷是否顯示MenuNav */
   z-index: ${(props) => (props.showMenuList ? 60 : -50)};
   opacity: ${(props) => (props.showMenuList ? 1 : 0)};
   transition: 0.5s;
@@ -39,6 +43,7 @@ const FixedContainer = styled.div`
 const FixedListImg = styled.div`
   position: relative;
   top: 0;
+  /* 圖片w110% 會稍微往右邊偏 right:5%調整回來 */
   right: 5%;
   width: 110%;
   padding-top: 45%;

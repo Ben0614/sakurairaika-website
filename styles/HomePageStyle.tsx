@@ -2,19 +2,19 @@ import styled from "styled-components";
 
 interface Props {
   showNumber?: boolean;
-  showSiteLinks?: boolean;
   loading?: boolean;
   showNews?: boolean;
   showProfile?: boolean;
   showSchedule?: boolean;
   showFanClud?: boolean;
   showSns?: boolean;
-  showFooter?: boolean;
 }
 
+// 載入中Bg
 const LoadingBg = styled.div<Props>`
   position: fixed;
   top: 0;
+  /* 根據loading判斷 */
   left: ${(props) => (props.loading ? "0" : "-100%")};
   width: 100%;
   height: 100%;
@@ -27,6 +27,7 @@ const LoadingBg = styled.div<Props>`
 `;
 
 const News = styled.div<Props>`
+  /* 根據showNews判斷 */
   opacity: ${(props) => (props.showNews ? 1 : 0)};
   transition: 1s;
   padding: ${(props) => props.theme.pd(12)} 0;
@@ -34,12 +35,14 @@ const News = styled.div<Props>`
     padding: ${(props) => props.theme.pd(30)} 0;
   }
 `;
+// 桌機時添加flex
 const NewsFlex = styled.div`
   ${(props) => props.theme.screens.lg} {
     display: flex;
     justify-content: space-between;
   }
 `;
+// 字形和margin都從函式設置
 const NewsTitle = styled.div`
   margin: 0 0 ${(props) => props.theme.mg(12)};
   h2 {
@@ -97,8 +100,10 @@ const NewsItemContent = styled.p`
   line-height: ${(props) => props.theme.lh(props.theme.fz()) + "px"};
 `;
 const Profile = styled(News)`
+  /* 根據showProfile判斷顯示 */
   opacity: ${(props) => (props.showProfile ? 1 : 0)};
   position: relative;
+  /* 背景色 */
   &::after {
     content: "";
     position: absolute;
@@ -116,6 +121,7 @@ const Profile = styled(News)`
     }
   }
 `;
+// 桌機時添加flex
 const ProfileFlex = styled(NewsFlex)``;
 const ProfileTitle = styled(NewsTitle)``;
 const ProfileImg = styled.div`
@@ -123,6 +129,7 @@ const ProfileImg = styled.div`
   padding-top: 100%;
   margin: 0 auto ${(props) => props.theme.mg(6)};
   ${(props) => props.theme.screens.lg} {
+    /* 桌機 調整照片位置和大小 */
     order: 2;
     width: 30%;
     padding-top: 45%;
@@ -162,7 +169,6 @@ const ProfileContentList = styled.ul`
     margin: 0;
   }
 `;
-
 const Schedule = styled(News)`
   opacity: ${(props) => (props.showSchedule ? 1 : 0)};
   background-color: #fff;
@@ -178,15 +184,19 @@ const ScheduleCalendar = styled.div`
   width: 80%;
   display: grid;
   gap: 10px;
+  /* 手機 3個一行 */
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 0 0 ${(props) => props.theme.mg(8)} auto;
+  /* 手機只顯示3個 其餘的隱藏 */
   > a:nth-child(3) ~ a {
     display: none;
   }
   ${(props) => props.theme.screens.lg} {
+    /* 桌機顯示6個 */
     grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 30px;
     margin: 0 auto ${(props) => props.theme.mg(8)} auto;
+    /* 開啟隱藏 */
     a:nth-child(3) ~ a {
       display: block;
     }
@@ -201,8 +211,10 @@ const ScheduleCalendarCircle = styled.div<Props>`
     line-height: ${(props) => props.theme.lh(props.theme.fz()) + "px"};
   }
   > div {
+    /* 被點擊到的顯示粉紅色 */
     background-color: ${(props) =>
       props.showNumber ? "#dc8fa4" : "transparent"};
+    /* 被點擊到的字顯示白色 */
     color: ${(props) => (props.showNumber ? "#fff" : "#000")};
     border-radius: 50%;
     width: 80px;
@@ -214,10 +226,12 @@ const ScheduleCalendarCircle = styled.div<Props>`
       padding: ${(props) => props.theme.pd(6)} 0;
     }
     transition: 0.1s;
+    /* 觸碰到的也顯示粉紅和白 */
     &:hover {
       background-color: #dc8fa4;
       color: #fff;
     }
+    /* 日期 */
     > p:nth-child(1) {
       font-size: ${(props) => props.theme.fz(5) + "px"};
       line-height: ${(props) => props.theme.lh(props.theme.fz(5)) + "px"};
@@ -226,6 +240,7 @@ const ScheduleCalendarCircle = styled.div<Props>`
         line-height: ${(props) => props.theme.lh(props.theme.fz(10)) + "px"};
       }
     }
+    /* 星期 */
     > p:nth-child(2) {
       color: #e3e3e3;
       font-size: ${(props) => props.theme.fz() + "px"};
@@ -235,6 +250,7 @@ const ScheduleCalendarCircle = styled.div<Props>`
 `;
 const ScheduleItemGroup = styled.div``;
 const ScheduleItem = styled.div<Props>`
+  /* 根據showNumber判斷顯示 */
   display: ${(props) => (props.showNumber ? "block" : "none")};
   width: 80%;
   margin: 0 0 ${(props) => props.theme.mg(12)} auto;
@@ -256,10 +272,12 @@ const ScheduleItem = styled.div<Props>`
 `;
 
 const FanClud = styled(News)`
+  /* 根據showFanClud判斷顯示 */
   opacity: ${(props) => (props.showFanClud ? 1 : 0)};
   position: relative;
   overflow: hidden;
   margin: 0 0 ${(props) => props.theme.mg(12)} 0;
+  /* 背景色 */
   &::after {
     content: "";
     position: absolute;
@@ -281,11 +299,11 @@ const FanCludContent = styled.div`
 `;
 const FanCludMember = styled.ul`
   width: 40%;
-
   li {
     display: flex;
     align-items: center;
     margin: 0 0 ${(props) => props.theme.mg(6)} 0;
+    /* 手機 右箭頭 */
     svg {
       color: #eeb5c4;
       ${(props) => props.theme.screens.lg} {
@@ -294,6 +312,7 @@ const FanCludMember = styled.ul`
     }
     ${(props) => props.theme.screens.lg} {
       position: relative;
+      /* 底線 */
       &::after,
       &::before {
         transition: 0.3s;
@@ -342,6 +361,7 @@ const FanCludNav = styled.ul`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    /* 桌機 Links區域往上一些 */
     transform: translateY(-35%);
     > a {
       width: 35%;
@@ -349,6 +369,7 @@ const FanCludNav = styled.ul`
   }
 `;
 const Sns = styled(News)`
+  /* 根據showSns判斷開啟 */
   opacity: ${(props) => (props.showSns ? 1 : 0)};
 `;
 const SnsTitle = styled(NewsTitle)`
@@ -375,8 +396,6 @@ const SnsLinks = styled.div`
     }
   }
 `;
-
-
 
 export {
   LoadingBg,

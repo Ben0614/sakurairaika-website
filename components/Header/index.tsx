@@ -4,6 +4,7 @@ import Link from "next/link";
 import FixedMenu from "../FixedMenu";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { BsTwitter, BsInstagram } from "react-icons/bs";
+import { OfficialSiteData, FanCludOptions } from "../../data";
 import {
   HeaderWrap,
   FixedList,
@@ -17,32 +18,30 @@ import {
   MainImg,
 } from "./HeaderStyle";
 
-const OfficialSiteData = ["HOME", "NEWS", "PROFILE", "SCHEDULE"];
-const FanCludOptions = [
-  "ABOUT",
-  "STAFF BLOG",
-  "GALLERY",
-  "MOVIE",
-  "うににゃん BLOG",
-  "MESSAGE",
-  "GOODS",
-  "TICKET",
-];
-
 function Header() {
+  // 設置螢幕寬度
   const [screenWidth, setScreenWidth] = useState(0);
+  // 判斷開啟Menu的Nav
   const [showMenuList, setShowMenuList] = useState(false);
+  // 判斷顯示Header
   const [showHeader, setShowHeader] = useState(false);
+
+  // 設置螢幕寬度狀態
   const setWidth = () => {
     setScreenWidth(document.documentElement.clientWidth);
   };
+
+  // 掛載後0.3秒顯示Header
   useEffect(() => {
     setTimeout(() => {
       setShowHeader(true);
     }, 300);
   }, []);
+
+  // 一掛載就設置螢幕寬度
   useEffect(() => {
     setWidth();
+    // 螢幕大小事件
     window.addEventListener("resize", setWidth);
     // console.log(screenWidth);
   }, [screenWidth]);
@@ -55,6 +54,7 @@ function Header() {
         />
         <FixedList showMenuList={showMenuList}>
           <FixedListImg>
+            {/* 根據螢幕寬度判斷要顯示mobile圖片或computer圖片 */}
             <Image
               src={
                 screenWidth >= 1375
@@ -152,6 +152,7 @@ function Header() {
             alt=""
             layout="fill"
             objectFit={`cover`}
+            // 圖片焦點位置
             objectPosition={screenWidth >= 1375 ? `top` : ``}
           />
         </MainImg>

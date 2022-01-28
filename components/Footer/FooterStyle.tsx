@@ -1,18 +1,12 @@
 import styled from "styled-components";
 
 interface Props {
-  showNumber?: boolean;
   showSiteLinks?: boolean;
-  loading?: boolean;
-  showNews?: boolean;
-  showProfile?: boolean;
-  showSchedule?: boolean;
-  showFanClud?: boolean;
-  showSns?: boolean;
   showFooter?: boolean;
 }
 
 const FooterWrap = styled.div<Props>`
+  /* 根據showFooter狀態顯示或隱藏 */
   opacity: ${(props) => (props.showFooter ? 1 : 0)};
   transition: 1s;
   padding: ${(props) => props.theme.pd(12)} 0;
@@ -47,6 +41,7 @@ const SiteSupportTitle = styled.div`
   }
 `;
 const SiteSupportList = styled.ul<Props>`
+  /* 根據showSiteLinks判斷List高度要給多少 */
   height: ${(props) => (props.showSiteLinks ? "175px" : "0")};
   overflow: hidden;
   display: flex;
@@ -70,6 +65,7 @@ const SiteSupportList = styled.ul<Props>`
     }
   }
   ${(props) => props.theme.screens.lg} {
+    /* 大螢幕高度較矮 */
     height: ${(props) => (props.showSiteLinks ? "105px" : "0")};
     width: 50%;
     margin: 0 auto;

@@ -21,20 +21,24 @@ const Menu = styled.div<Props>`
   }
   > div {
     position: absolute;
+    /* 根據showMenuList來改變Menu線條的顏色和樣式 */
     background-color: ${(props) =>
       props.showMenuList ? "#DF7E8F" : "#707070"};
     height: 1px;
     transition: 0.3s;
+    /* 第一條 */
     &:nth-child(1) {
       width: 100%;
       top: ${(props) => (props.showMenuList ? "50%" : "0")};
       transform: ${(props) => (props.showMenuList ? "rotate(-45deg)" : "0")};
     }
+    /* 第二條 */
     &:nth-child(2) {
       opacity: ${(props) => (props.showMenuList ? 0 : 1)};
       top: 50%;
       width: 50%;
     }
+    /* 第三條 */
     &:nth-child(3) {
       width: ${(props) => (props.showMenuList ? "100%" : "75%")};
       top: ${(props) => (props.showMenuList ? "50%" : "100%")};

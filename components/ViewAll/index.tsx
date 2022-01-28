@@ -9,13 +9,18 @@ function ViewAll(props: Props) {
 
   return (
     <>
+      {/* 根據傳來的props判斷要顯示哪一個 */}
+      {/* 手機 */}
       <ItemViewAll mobile={props.mobile}>
+        {/* 兩條線 */}
         <div></div>
         <div></div>
         <p>VIEW ALL</p>
       </ItemViewAll>
+      {/* 桌機 */}
       <ItemViewAllComputer computer={props.computer}>
         <p>VIEW ALL</p>
+        {/* 兩條線 */}
         <div></div>
         <div></div>
       </ItemViewAllComputer>

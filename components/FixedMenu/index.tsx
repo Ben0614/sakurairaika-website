@@ -8,6 +8,7 @@ interface Props {
 function FixedMenu(props: Props) {
   return (
     <>
+      {/* 根據傳來的showMenuList判斷是要開啟或關閉 */}
       <Menu
         onClick={() => {
           props.showMenuList
@@ -16,6 +17,7 @@ function FixedMenu(props: Props) {
         }}
         showMenuList={props.showMenuList}
       >
+        {/* Menun 三條線 */}
         <div></div>
         <div></div>
         <div></div>
