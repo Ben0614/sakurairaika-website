@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
 ${normalize}
 * {
   box-sizing: border-box;
-  font-family: 'Noto Sans JP','Poppins', sans-serif;
+  font-family: 'Poppins','Noto Sans JP', sans-serif;
 }
 html,
 body {

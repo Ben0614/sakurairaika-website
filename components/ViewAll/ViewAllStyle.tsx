@@ -37,6 +37,7 @@ const ItemViewAll = styled.div<Props>`
     font-size: ${(props) => props.theme.fz() + "px"};
     line-height: ${(props) => props.theme.lh(props.theme.fz()) + "px"};
     letter-spacing: ${(props) => props.theme.letters.viewAll};
+    font-weight: ${(props) => props.theme.fw.viewAll};
     margin: 0 0 0 ${(props) => props.theme.mg(2)};
   }
 `;
@@ -73,6 +74,7 @@ const ItemViewAllComputer = styled.div<Props>`
     font-size: ${(props) => props.theme.fz() + "px"};
     line-height: ${(props) => props.theme.lh(props.theme.fz()) + "px"};
     letter-spacing: ${(props) => props.theme.letters.viewAll};
+    font-weight: ${(props) => props.theme.fw.viewAll};
     margin: 0 0 ${(props) => props.theme.mg(2)};
   }
 `;

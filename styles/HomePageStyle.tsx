@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 interface Props {
   showNumber?: boolean;
-  loading?: boolean;
+  isLoading?: boolean;
   showNews?: boolean;
   showProfile?: boolean;
   showSchedule?: boolean;
@@ -14,8 +14,8 @@ interface Props {
 const LoadingBg = styled.div<Props>`
   position: fixed;
   top: 0;
-  /* 根據loading判斷 */
-  left: ${(props) => (props.loading ? "0" : "-100%")};
+  /* 根據isLoading判斷 */
+  left: ${(props) => (props.isLoading ? "0" : "-100%")};
   width: 100%;
   height: 100%;
   background-color: #fff;
@@ -49,6 +49,7 @@ const NewsTitle = styled.div`
     font-size: ${(props) => props.theme.fz(8) + "px"};
     line-height: ${(props) => props.theme.lh(props.theme.fz(8)) + "px"};
     letter-spacing: ${(props) => props.theme.letters.title};
+    font-weight: ${(props) => props.theme.fw.bigTitle};
   }
   ${(props) => props.theme.screens.lg} {
     width: 30%;
@@ -82,6 +83,7 @@ const NewsDataCategory = styled.div`
   margin: 0 0 ${(props) => props.theme.mg(3)} 0;
   p {
     margin: 0;
+    font-weight: ${(props) => props.theme.fw.en};
   }
   p:last-child {
     color: #e3934d;
@@ -93,11 +95,14 @@ const NewsDataCategory = styled.div`
 const NewsItemTitle = styled.h4`
   font-size: ${(props) => props.theme.fz(1) + "px"};
   line-height: ${(props) => props.theme.lh(props.theme.fz(1)) + "px"};
+  font-family: ${(props) => props.theme.ff.jp};
+  font-weight: ${(props) => props.theme.fw.jpTitle};
   margin: 0 0 ${(props) => props.theme.mg(1)};
 `;
 const NewsItemContent = styled.p`
   font-size: ${(props) => props.theme.fz() + "px"};
   line-height: ${(props) => props.theme.lh(props.theme.fz()) + "px"};
+  font-family: ${(props) => props.theme.ff.jp};
 `;
 const Profile = styled(News)`
   /* 根據showProfile判斷顯示 */
@@ -145,6 +150,7 @@ const ProfileContent = styled.div`
       font-size: ${(props) => props.theme.fz(5) + "px"};
       line-height: ${(props) => props.theme.lh(props.theme.fz(5)) + "px"};
       letter-spacing: ${(props) => props.theme.letters.name};
+      font-family: ${(props) => props.theme.ff.jp};
     }
     span:nth-child(2) {
       font-size: ${(props) => props.theme.fz() + "px"};
@@ -159,6 +165,7 @@ const ProfileContent = styled.div`
 `;
 const ProfileContentList = styled.ul`
   li {
+    font-family: ${(props) => props.theme.ff.jp};
     margin: 0 0 ${(props) => props.theme.mg(3)} 0;
     span {
       display: inline-block;
@@ -235,6 +242,7 @@ const ScheduleCalendarCircle = styled.div<Props>`
     > p:nth-child(1) {
       font-size: ${(props) => props.theme.fz(5) + "px"};
       line-height: ${(props) => props.theme.lh(props.theme.fz(5)) + "px"};
+      font-weight: ${(props) => props.theme.fw.scheduleDate};
       ${(props) => props.theme.screens.lg} {
         font-size: ${(props) => props.theme.fz(10) + "px"};
         line-height: ${(props) => props.theme.lh(props.theme.fz(10)) + "px"};
@@ -245,6 +253,7 @@ const ScheduleCalendarCircle = styled.div<Props>`
       color: #e3e3e3;
       font-size: ${(props) => props.theme.fz() + "px"};
       line-height: ${(props) => props.theme.lh(props.theme.fz()) + "px"};
+      font-weight: ${(props) => props.theme.fw.scheduleWeek};
     }
   }
 `;
@@ -265,6 +274,7 @@ const ScheduleItem = styled.div<Props>`
   }
   > a > p {
     transition: 0.3s;
+    font-family: ${(props) => props.theme.ff.jp};
     &:hover {
       opacity: 0.7;
     }
@@ -282,7 +292,7 @@ const FanClud = styled(News)`
     content: "";
     position: absolute;
     top: 0;
-    left: ${(props) => (props.showFanClud ? "25%" : "100%")};
+    left: ${(props) => (props.showFanClud ? "22%" : "100%")};
     width: 100%;
     height: 100%;
     z-index: -1;
@@ -334,6 +344,7 @@ const FanCludMember = styled.ul`
     }
     p {
       letter-spacing: ${(props) => props.theme.letters.link};
+      font-weight: ${(props) => props.theme.fw.en};
     }
   }
 `;
@@ -354,6 +365,7 @@ const FanCludNav = styled.ul`
     }
     p {
       letter-spacing: ${(props) => props.theme.letters.link};
+      font-weight: ${(props) => props.theme.fw.en};
       margin: 0 0 0 ${(props) => props.theme.mg(2)};
     }
   }

@@ -66,7 +66,7 @@ const Home: NextPage = () => {
   const [showSns, setShowSns] = useState(false);
 
   // 載入中
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   // 滾動高度
   const [scrollTopHeight, setScrollTopHeight] = useState(0);
   // 螢幕高度
@@ -109,7 +109,7 @@ const Home: NextPage = () => {
   // 掛載後0.3秒移除載入中
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false);
+      setIsLoading(false);
     }, 300);
   }, []);
 
@@ -126,7 +126,7 @@ const Home: NextPage = () => {
         <title>桜井玲香 OFFICIAL SITE & FANCLUB</title>
       </Head>
       {/* 載入中Bg */}
-      <LoadingBg loading={loading} />
+      <LoadingBg isLoading={isLoading} />
       {/* Header */}
       {/* 添加lazyload 隱藏住runtime */}
       <LazyLoad height={"100vh"}>
@@ -169,7 +169,7 @@ const Home: NextPage = () => {
         <Container>
           <ProfileFlex>
             <ProfileTitle>
-              <h2>Profile</h2>
+              <h2>PROFILE</h2>
               <ViewAll computer />
             </ProfileTitle>
             <ProfileImg>

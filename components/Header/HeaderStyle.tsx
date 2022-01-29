@@ -55,14 +55,16 @@ const FixedListImg = styled.div`
 `;
 const OfficalSite = styled.div`
   margin: 0 0 ${(props) => props.theme.mg(4)};
+  font-weight: ${(props) => props.theme.fw.fixedNav};
   ${(props) => props.theme.screens.lg} {
     width: 33.3333%;
   }
   > .title {
-    font-size: ${(props) => props.theme.fz() + "px"};
-    line-height: ${(props) => props.theme.lh(props.theme.fz()) + "px"};
+    font-size: ${(props) => props.theme.fz(1) + "px"};
+    line-height: ${(props) => props.theme.lh(props.theme.fz(1)) + "px"};
     letter-spacing: ${(props) => props.theme.letters.link};
-    color: #ccc;
+    font-weight: ${(props) => props.theme.fw.fixedNav};
+    color: #aaa;
     margin: 0 0 ${(props) => props.theme.mg(4)};
   }
   > ul {
@@ -98,10 +100,11 @@ const OfficalSite = styled.div`
 const Fanclub = styled(OfficalSite)``;
 const Sns = styled.div`
   .title {
-    font-size: ${(props) => props.theme.fz() + "px"};
-    line-height: ${(props) => props.theme.lh(props.theme.fz()) + "px"};
+    font-size: ${(props) => props.theme.fz(1) + "px"};
+    line-height: ${(props) => props.theme.lh(props.theme.fz(1)) + "px"};
     letter-spacing: ${(props) => props.theme.letters.link};
-    color: #ccc;
+    font-weight: ${(props) => props.theme.fw.fixedNav};
+    color: #aaa;
     margin: 0 0 ${(props) => props.theme.mg(3)};
   }
   a {
@@ -143,6 +146,7 @@ const Member = styled.div`
     }
     p {
       letter-spacing: ${(props) => props.theme.letters.link};
+      font-weight: ${(props) => props.theme.fw.en};
     }
   }
 `;

@@ -27,6 +27,7 @@ const SiteSupportTitle = styled.div`
   }
   h3 {
     letter-spacing: ${(props) => props.theme.letters.siteSupport};
+    font-weight: ${(props) => props.theme.fw.bigTitle};
   }
   h3,
   svg {
@@ -62,6 +63,9 @@ const SiteSupportList = styled.ul<Props>`
       svg {
         color: #aaa;
       }
+      p {
+        font-family: ${(props) => props.theme.ff.jp};
+      }
     }
   }
   ${(props) => props.theme.screens.lg} {
@@ -78,6 +82,7 @@ const CopyRight = styled.p`
   color: #aaa;
   text-align: center;
   font-size: ${(props) => props.theme.fz() + "px"};
+  font-family: ${(props) => props.theme.ff.jp};
 `;
 
 export {
