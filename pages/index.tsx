@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import type { NextPage } from "next";
+import LazyLoad from "react-lazyload";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
@@ -127,7 +128,10 @@ const Home: NextPage = () => {
       {/* 載入中Bg */}
       <LoadingBg loading={loading} />
       {/* Header */}
-      <Header />
+      {/* 添加lazyload 隱藏住runtime */}
+      <LazyLoad height={"100vh"}>
+        <Header />
+      </LazyLoad>
       {/* 右下角的Fixed圓形 */}
       <FixedJoin />
       {/* News區域 */}
