@@ -226,7 +226,8 @@ const ScheduleCalendarCircle = styled.div<Props>`
     border-radius: 50%;
     width: 80px;
     height: 80px;
-    padding: ${(props) => props.theme.pd(2)} 0;
+    padding: ${(props) => props.theme.pd(3)} 0;
+    margin: 0 0 ${(props) => props.theme.mg(1)};
     ${(props) => props.theme.screens.lg} {
       width: 120px;
       height: 120px;
