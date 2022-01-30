@@ -1,7 +1,5 @@
 import React from "react";
-import LazyLoad from "react-lazyload";
 import { FixedJoinWrap } from "./FixedJoinStyle";
-import Image from "next/image";
 
 function FixedJoin() {
   return (

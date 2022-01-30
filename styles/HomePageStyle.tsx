@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 interface Props {
   showNumber?: boolean;
-  isLoading?: boolean;
+  isShowPage?: boolean;
   showNews?: boolean;
   showProfile?: boolean;
   showSchedule?: boolean;
@@ -10,12 +10,24 @@ interface Props {
   showSns?: boolean;
 }
 
-// 載入中Bg
+// LoadingBg
 const LoadingBg = styled.div<Props>`
   position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 10000;
+`;
+// Wrap
+const Wrap = styled.div<Props>``;
+// WhiteBg
+const WhiteBg = styled.div<Props>`
+  position: fixed;
+  top: 0;
   /* 根據isLoading判斷 */
-  left: ${(props) => (props.isLoading ? "0" : "-100%")};
+  left: ${(props) => (props.isShowPage ? "-100%" : "0")};
   width: 100%;
   height: 100%;
   background-color: #fff;
@@ -412,6 +424,8 @@ const SnsLinks = styled.div`
 
 export {
   LoadingBg,
+  Wrap,
+  WhiteBg,
   News,
   NewsTitle,
   NewsItemGroup,
