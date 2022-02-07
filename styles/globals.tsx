@@ -6,13 +6,13 @@ export const GlobalStyle = createGlobalStyle`
 ${normalize}
 * {
   box-sizing: border-box;
-  font-family: 'Poppins','Noto Sans JP', sans-serif;
 }
 html,
 body {
   padding: 0;
   margin: 0;
   color:#464646;
+  font-family: 'Poppins','Noto Sans JP', sans-serif;
 }
 a {
   text-decoration: none;
